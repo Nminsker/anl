@@ -2,7 +2,7 @@ from abc import abstractmethod
 from negmas.gb.mechanisms.base import ResponseType
 from negmas.sao.negotiators import SAONegotiator
 from negmas.sao.common import SAOState, SAOResponse
-from negmas.outcomes import Outcome, ExtendedOutcome
+from negmas.outcomes import Outcome
 
 __all__ = ["ANLNegotiator"]
 
@@ -16,7 +16,7 @@ class ANLNegotiator(SAONegotiator):
     @abstractmethod
     def __call__(self, state: SAOState) -> SAOResponse: ...
 
-    def propose(self, state) -> Outcome | ExtendedOutcome | None:
+    def propose(self, state) -> Outcome | None:
         if isinstance(self.__last_offer, int) and self.__last_offer == 0:
             # assert self.__last_response is None
             resp = self(state)
